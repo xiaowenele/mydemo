@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片动态提示效果</title>
+	<style>
+	html,body,ul,li,p,h1,h2,h3,h4,h5,h6,figure,figcaption {
+        padding:0px;
+        margin:0px;
+	}
+    ul,li {
+        list-style:none;
+    }
+    a {
+        text-decoration: none;
+    }
+    body {
+    	width: 100%
+        height:100%;
+    	background-color: #ddd;
+    	font-size: 15px;
+    	font-family:'Open Sans Condensed','Arial Narrow',serif;
+
+    }
+    .container {
+    	width: 100%;
+    	position: relative;
+    }
+    #header {
+    	margin: 30px 0;
+    	text-align: center;
+    }
+    #header h3 {
+    	margin-bottom: 10px;
+    	color: rgba(42,23,23,0.43);
+    }
+    #header p {
+    	margin-bottom: 15px;
+    	color: rgba(0,0,0,0.39);
+    }
+    #header ul {
+    	width: 100%;
+    	margin: 0 auto;
+    }
+    #header ul li {
+    	display: inline-block;
+    	height: 20px;
+    	line-height: 20px;
+    	text-align: center;
+    	margin-left: 5px;
+    	padding: 5px;
+    	border: 1px solid #fff;
+    	background-color: rgba(255,0,0,0.02);
+    }
+    #header ul li a {
+    	color:#C6A1A1;
+        /*font-style:oblique; */
+    }
+    #header li:hover {
+    	background-color: rgba(255,255,255,0.5);
+    }
+    .containertwo {
+    	margin: 50px auto;
+    	width: 80%;
+    	height: 1000px;
+    	
+    }
+    figure {
+    	
+    	width:33.33%; 
+    	height: 350px;
+    	overflow: hidden;
+    	position: relative;
+    	float: left;
+    }
+    figure figcaption {
+    	position: absolute;
+    	left: 0;
+    	top: 0;
+    	color: #FFF;
+    	font-family: "微软雅黑";
+
+    }
+    figure img {opacity: 0.8;transition: all 0.35s;}
+    figure figcaption p{transition: all 0.35s;}
+    figure figcaption div{transition: all 0.35s;}
+    figure figcaption h3{transition: all 0.35s;}
+    @media screen and (max-width: 600px){
+    	figure{width: 100%}
+    }
+    @media screen and (min-width: 601px) and (max-width: 1000px){
+    	figure{width: 50%}
+    }
+    @media screen and (min-width: 1001px){
+    	figure{width: 33.33%}
+    }
+    .text1 {
+    	background-color: #ddd;
+    }
+    .text1 figcaption {padding: 20px;}
+    .text1 figcaption p {
+    	background-color: #fff;
+    	color: #333;
+    	margin: 5px;
+    	text-align: center;
+    	transform: translate(-200px,0px);
+    }
+    .text1 figcaption p:nth-of-type(1){transition-delay: 0.05s;}
+    .text1 figcaption p:nth-of-type(2){transition-delay: 0.1s;}
+    .text1 figcaption p:nth-of-type(3){transition-delay: 0.15s;}
+    .text1:hover figcaption p {
+    	transform: translate(0px,0px);
+    }
+    .text1:hover img {
+    	transform: translate(-50px,0px);
+    	opacity: 0.7;
+    }
+    .text2 {
+    	background-color: pink;
+    }
+    .text2 figcaption {
+    	width: 100%;
+    	height: 100%;
+    }
+    .text2 figcaption h3 {
+    	margin-left: 15%;
+    	margin-top: 15%;
+    }
+    .text2 figcaption p {
+    	margin-left: 15%;
+    	transform: translate(0px,50px);
+    	opacity: 0;
+
+    }
+    .text2 figcaption div {
+    	border: 2px solid #fff;
+    	width: 80%;
+    	height: 80%;
+    	position: absolute;
+    	left: 10%;
+    	top: 10%;
+    	transform: translate(0px,-350px) rotate(0deg);
+    }
+    .text2:hover figcaption div {
+    	transform: translate(0px,0px) rotate(360deg);
+    }
+    .text2:hover img {opacity: 0.5;}
+    .text2:hover figcaption p{
+    	transform: translate(0px,0px);
+    	opacity: 1;
+    }
+    .text3 {
+    	background-color: #eee;
+    }
+    .text3 figcaption{top: 30%;left: 10%;}
+    .text3 figcaption h3 {
+    	transform: skew(90deg);
+    }
+    .text3 figcaption p {
+    	transform: skew(90deg);
+    	transition-delay: 0.1s;
+    }
+    .text3:hover img {opacity: 0.7;}
+    .text3:hover h3 {
+    	transform: skew(0deg);
+    }
+    .text3:hover p {
+    	transform: skew(0deg);
+    }
+    .text4 {
+    	background-color: #f7f7f7;
+    }
+    .text4 figcaption {
+    	width: 100%;
+    	height: 100%;
+    }
+    .text4 figcaption h3 {
+    	margin-left: 15%;
+    	margin-top: 15%;
+    	transform: scale(1.2,1.2);
+    	
+    }
+    .text4 figcaption p {
+    	margin-left: 15%;
+    	transform: scale(1.2,1.2);
+    	opacity: 0;
+
+    }
+    .text4 figcaption div {
+    	border: 2px solid #fff;
+    	width: 80%;
+    	height: 80%;
+    	position: absolute;
+    	left: 10%;
+    	top: 10%;
+    	transform: scale(1.2,1.2);
+    	opacity: 0;
+    }
+    .text4:hover figcaption div {
+    	transform: scale(1,1);
+    	opacity: 1;
+    }
+    .text4:hover img {opacity: 0.7;transform: scale(1.2,1.2);}
+    .text4:hover figcaption p{
+    	transform: scale(1,1);
+    	opacity: 1;
+    }
+    .text4:hover figcaption h3{
+    	transform: scale(1,1);
+    	
+    }
+    .text5 {
+    	background-color: #f7f7f7;
+    }
+    .text5 figcaption {
+    	width: 100%;
+    	height: 100%;
+    }
+    .text5 figcaption h3 {
+    	margin-left: 15%;
+    	margin-top: 15%;
+    	transform: translate(0px,50px);
+    	opacity: 0;
+    }
+    .text5 figcaption p {
+    	margin-left: 60%;
+    	margin-top: 50%;
+    	transform: translate(0px,50px);
+    	color: black;
+    	position: absolute;
+    }
+    .text5 figcaption div {
+    	border: 2px solid #fff;
+    	width: 110%;
+    	height: 100%;
+    	position: absolute;
+    	background-color: white;
+    	left: 0;
+    	top: 0;
+    	transform: translate(0px,350px);
+    	transform-origin: left top;
+    	
+    }
+    .text5:hover figcaption div {
+    	transform:translate(0px,350px) rotate(-15deg);
+    	opacity: 0.9;
+    	
+
+    }
+    .text5:hover figcaption p {
+    	transform: translate(0px,0px);
+    	
+
+    }
+    .text5:hover figcaption h3 {
+    	transform: translate(0px,0px);
+    	opacity: 1;
+
+    }
+    .test6{
+    background: #f7f7f7;
+}
+.test6 figcaption{
+    width: 100%;
+    height: 100%;
+     
+}
+.test6 figcaption div.one{
+    width: 70%;
+    height: 90%;
+    border-right: 2px solid #FFFFFF;
+    border-left: 2px solid #FFFFFF;
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    opacity: 0;
+    transform: scale(0,1);
+}
+ 
+.test6 figcaption div.two{
+    width: 80%;
+    height: 70%;
+    border-top: 2px solid #FFFFFF;
+    border-bottom: 2px solid #FFFFFF;
+    position: absolute;
+    top: 15%;
+    left:5%;
+    opacity: 0;
+    transform: scale(0,1);
+}
+.test6 figcaption h3{
+    position: absolute;
+    top: 20%;
+    left:15%;
+    transform: scale(1.2,1.2);
+}
+ 
+.test6 figcaption p{
+    position: absolute;
+    top: 40%;
+    left: 15%;
+    opacity: 0;
+    transform: scale(0.5,0.5);
+}
+.test6 img{
+    transform: scale(1.1,1.1);
+    opacity: 1;
+}
+ 
+.test6:hover figcaption div.one{
+    transform: scale(1,-1);
+    opacity: 1;
+    transition-delay: 0.1s;
+     
+}
+ 
+.test6:hover figcaption div.two{
+    transform: scale(1,-1);
+    opacity: 1;
+    transition-delay: 0.15s;
+}
+.test6:hover figcaption h3{
+    transform: scale(1,1);
+    opacity: 1;
+    transition-delay: 0.2s;
+}
+ 
+.test6:hover figcaption p{
+    transform: scale(1,1);
+    opacity: 1;
+    transition-delay: 0.3s;
+}
+ 
+.test6:hover img{
+    transform: scale(1,1);
+    opacity: 0.7;
+}
+	</style>
+</head>
+<body>
+<div class="container">
+    <div id="header">
+      <h3>CSS3 demo展示</h3>
+      <p>利用CSS制作一些动画和3D效果，和图片动态提示效果，可以增强用户的体验</p>
+      <ul>
+        <li><a href="index.html">Loading</a></li>
+        <li><a href="index2.html">旋转木马 立方体</a></li>
+        <li><a href="index3.html">照片墙</a></li>
+        <li><a href="index4.html">图片动态提示效果</a></li>      	
+      </ul>
+    </div>
+</div>
+<div class="containertwo">
+<figure class="text1">
+    <img src="image/31.jpg" alt="">
+    <figcaption>
+    	<h3>平移动画-多条文字</h3>
+    	<p>多条文字</p>
+    	<p>逐一飞入动画</p>
+    	<p>利用动画延时达到效果</p>
+    </figcaption>	
+</figure>
+<figure class="text2">
+    <img src="image/32.jpg" alt="">
+    <figcaption>
+    	<h3>旋转飞入飞出</h3>
+    	<p>通过旋转和位移，制作出飞入的效果</p>
+    	<div></div>
+    </figcaption>	
+</figure>
+<figure class="text3">
+    <img src="image/33.jpg" alt="">
+    <figcaption>
+    	<h3>扭曲飞入飞出</h3>
+    	<p>通过旋转和位移，制作出飞入的效果</p>
+        <p>扭曲达到90度，元素就看不见了</p>
+    </figcaption>	
+</figure>
+<figure class="text4">
+    <img src="image/35.jpg" alt="">
+    <figcaption>
+    	<h3>简单缩放效果</h3>
+    	<p>通过简单的单纯缩放效果制作的动画</p>
+    	<div></div>
+    </figcaption>	
+</figure>
+<figure class="text5">
+    <img src="image/34.jpg" alt="">
+    <figcaption>
+    	<h3>利用旋转显示额外信息</h3>
+    	<div></div>
+    	<p>but1  but2</p>
+    </figcaption>	
+</figure>
+<figure class="test6">
+        <img src="image/37.jpg">
+        <figcaption>
+          <h3>绘制线条效果</h3>
+          <p>通过缩放属性绘制边框</p>
+          <div class="one"></div>
+          <div class="two"></div>
+        </figcaption>
+     
+    </figure>
+</div>
+	
+</body>
+</html>

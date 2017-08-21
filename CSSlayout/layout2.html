@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圣杯布局</title>
+    <style>
+    html,body,ul,li,p,h1,h2,h3,h4,h5,h6 {
+                padding:0px;
+                margin:0px;
+    }
+    ul,li {
+        list-style:none;
+    }
+    a {
+        text-decoration: none;
+    }
+    body {
+        width: 100%
+        height:100%;
+        background-color: #ddd;
+        font-size: 15px;
+        font-family:'Open Sans Condensed','Arial Narrow',serif;
+        min-width: 700px;
+
+    }
+    .container {
+        width: 100%;
+        position: relative;
+    }
+    #header {
+        margin: 30px 0;
+        text-align: center;
+    }
+    #header h3 {
+        margin-bottom: 10px;
+        color: rgba(42,23,23,0.43);
+    }
+    #header p {
+        margin-bottom: 15px;
+        color: rgba(0,0,0,0.39);
+    }
+    #header ul {
+        width: 100%;
+        margin: 0 auto;
+    }
+    #header ul li {
+        display: inline-block;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        margin-left: 5px;
+        padding: 5px;
+        border: 1px solid #fff;
+        background-color: rgba(255,0,0,0.02);
+    }
+    #header ul li a {
+        color:#C6A1A1;
+        /*font-style:oblique; */
+    }
+    #header li:hover {
+        background-color: rgba(255,255,255,0.5);
+    }
+    .layout {
+        margin: 50px auto;
+        width: 70%;
+    }
+    .headertwo,
+    .footer{ 
+        border: 1px solid #333;
+        background: #aaa;
+        text-align: center;
+    }
+    .sub,
+    .main,
+    .extra{ 
+        float: left;
+        height: 400px;
+    }
+    .sub{
+        margin-left: -100%;
+        width: 200px;
+        background: red;
+    }
+    .extra{
+        margin-left: -220px;
+        width: 220px;
+        background: yellow;
+    }
+    .main{ 
+        width: 100%;
+        height: 400px;
+    }
+    .main-inner{ 
+        margin-left: 200px;
+        margin-right: 220px;
+        height: 400px;
+        background: pink;
+        word-break: break-all;
+    }
+    .footer{ 
+        clear: both;
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="header">
+      <h3>CSS常见布局</h3>
+      <p>CSS的常见布局，如圣杯布局，双飞翼布局</p>
+      <ul>
+        <li><a href="layout.html">圣杯布局</a></li>
+        <li><a href="layout2.html">双飞翼布局</a></li>       
+      </ul>
+    </div>
+</div>
+<div class="layout">
+<div class="headertwo">
+    <h4>header</h4>
+</div>
+    <div class="main">
+    <div class="main-inner">
+        <h4>main</h4>
+        <p>
+            听说双飞翼布局是玉伯大大提出来的，始于淘宝UED
+
+如果把三栏布局比作一只大鸟，可以把main看成是鸟的身体，sub和extra则是鸟的翅膀。这个布局的实现思路是，先把最重要的身体部分放好，然后再将翅膀移动到适当的地方.
+
+左翅sub有200px,右翅extra..220px.. 身体main自适应未知
+
+1.html代码中，main要放最前边，sub  extra
+
+2.将main  sub  extra 都float:left
+
+3.将main占满 width:100%
+
+4.此时main占满了，所以要把sub拉到最左边，使用margin-left:-100%  同理 extra使用margin-left:-220px
+
+5.main内容被覆盖了吧，除了使用外围的padding，还可以考虑使用margin。
+
+给main增加一个内层div-- main-inner, 然后margin:0 220px 0 200px
+        </p>
+        </div>
+    </div> 
+    <div class="sub">
+    <h4>sub</h4>
+        <p></p>
+    </div>
+
+      <div class="extra">
+    <h4>extra</h4>
+        <p></p>
+    </div>
+    <div class="footer">
+        <h4>footer</h4>
+    </div>
+</div>
+    
+</body>
+</html>

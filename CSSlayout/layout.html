@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>圣杯布局</title>
+	<style>
+	html,body,ul,li,p,h1,h2,h3,h4,h5,h6 {
+                padding:0px;
+                margin:0px;
+    }
+    ul,li {
+        list-style:none;
+    }
+    a {
+        text-decoration: none;
+    }
+    body {
+    	width: 100%
+        height:100%;
+    	background-color: #ddd;
+    	font-size: 15px;
+    	font-family:'Open Sans Condensed','Arial Narrow',serif;
+    	min-width: 700px;
+
+    }
+    .container {
+    	width: 100%;
+    	position: relative;
+    }
+    #header {
+    	margin: 30px 0;
+    	text-align: center;
+    }
+    #header h3 {
+    	margin-bottom: 10px;
+    	color: rgba(42,23,23,0.43);
+    }
+    #header p {
+    	margin-bottom: 15px;
+    	color: rgba(0,0,0,0.39);
+    }
+    #header ul {
+    	width: 100%;
+    	margin: 0 auto;
+    }
+    #header ul li {
+    	display: inline-block;
+    	height: 20px;
+    	line-height: 20px;
+    	text-align: center;
+    	margin-left: 5px;
+    	padding: 5px;
+    	border: 1px solid #fff;
+    	background-color: rgba(255,0,0,0.02);
+    }
+    #header ul li a {
+    	color:#C6A1A1;
+        /*font-style:oblique; */
+    }
+    #header li:hover {
+    	background-color: rgba(255,255,255,0.5);
+    }
+    .layout {
+    	margin: 50px auto;
+    	width: 70%;
+    }
+    .headertwo,
+    .footer{ 
+        border: 1px solid #333;
+        background: #aaa;
+        text-align: center;
+    }
+    .left,
+    .middle,
+    .right{ 
+        position: relative;
+        float: left;
+        height: 400px;
+    }
+    .containertwo{
+        padding:0 220px 0 200px;
+        overflow: hidden;
+    }
+    .left{
+        margin-left: -100%;
+        left: -200px;
+        width: 200px;
+        background: #C98154;
+    }
+    .right{
+        margin-left: -220px;
+        right: -220px;
+        width: 220px;
+        background: #CD7DC1;
+    }
+    .middle{ 
+        width: 100%;
+        background: #84C0DF;
+        word-break: break-all;
+
+    }
+    .footer{ 
+        clear: both;
+    }
+	</style>
+</head>
+<body>
+<div class="container">
+    <div id="header">
+      <h3>CSS常见布局</h3>
+      <p>CSS的常见布局，如圣杯布局，双飞翼布局</p>
+      <ul>
+        <li><a href="layout.html">圣杯布局</a></li>
+        <li><a href="layout2.html">双飞翼布局</a></li>     	
+      </ul>
+    </div>
+</div>
+<div class="layout">
+<div class="headertwo">
+    <h4>header</h4>
+</div>
+<div class="containertwo">
+    <div class="middle">
+        <h4>middle</h4>
+        <p>html代码中  middle部分首先要放在container的最前部分。然后是left,right
+
+1.将三者都 float:left , 再加上一个position:relative (因为相对定位后面会用到）
+
+2.middle部分 width:100%占满
+
+3.此时middle占满了，所以要把left拉到最左边，使用margin-left:-100%
+
+4.这时left拉回来了，但会覆盖middle内容的左端，要把middle内容拉出来，所以在外围container加上 padding:0 220px 0 200px
+
+5.middle内容拉回来了，但left也跟着过来了，所以要还原，就对left使用相对定位 left:-200px  同理，right也要相对定位还原 right:-220px
+
+6.到这里大概就自适应好了。如果想container高度保持一致可以给left middle right都加上min-height:130px
+        </p>
+    </div>
+    <div class="left">
+    <h4>left</h4>
+        <p></p>
+    </div>
+    <div class="right">
+    <h4>right</h4>
+        <p></p>
+    </div>
+    </div>
+    <div class="footer">
+        <h4>footer</h4>
+    </div>
+    </div>
+	
+</body>
+</html>
