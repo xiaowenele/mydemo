@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>stickUp</title>
+	<title>固定顶部</title>
+    <script src="jquery-3.2.1.min.js"></script>
 	<style>
 		html,body,ul,li,p,h1,h2,h3,h4,h5,h6 {
                 padding:0px;
@@ -60,21 +61,130 @@
     #header li:hover {
     	background-color: rgba(255,255,255,0.5);
     }
+    #nav {
+        margin: 0 auto;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        background-color: #8EE2FF;
+        border: 1px solid #fff;
+        box-shadow: 1px 1px 3px #fff;
+        position: relative;
+    }
+    #nav span {
+        display: inline-block;
+        margin-left: 15px;
+        font-size: 20px;
+        height: 40px;
+    }
+    #nav span a:hover {
+        color: #c40000;
+    }
+    .fjimg {
+         margin: 50px auto;
+         width: 70%;
+         overflow: hidden;
+         height: 700px;
+    }
+    .imgs {
+        margin: 50px auto;
+        width: 70%;
+        text-align: center;
+
+    }
+    .imgs div{
+        display: inline-block;
+        width: 450px; 
+        height: 300px;
+        margin: 5px;
+        border: 10px solid #fff;
+    }
+    .imgs div img{
+        width: 450px;
+        height: 300px;
+    }
+    .about {
+        width: 60%;
+        height: 100px;
+        background: #76A19A;
+        margin: 50px auto;
+    }
+    .about div {
+        display: inline-block;
+    }
+    .about1 {
+        margin-top: 40px;
+        margin-left: 100px;
+        font-size: 20px;
+    }
+    .about2 {
+        margin-left: 200px;
+
+    }
 	</style>
 </head>
 <body>
 <div class="container">
 <div id="header">
-  <h3>jqurey的常见特效--图片懒加载</h3>
-  <p>先加载可视窗口区域的图片，当用户向下拖动滚动条时再继续加载后面的图片</p>
+  <h3>jqurey的常见特效--固定顶部</h3>
+  <p>当用户向下拖动滚动条时到一定程度后，使导航栏固定在顶部</p>
   <ul>
     <li><a href="jquery.html">懒加载</a></li>
     <li><a href="jquery2.html">tab切换</a></li>     	
     <li><a href="jquery3.html">瀑布流布局</a></li>     	
     <li><a href="jquery4.html">回到顶部</a></li>     	
-    <li><a href="jquery5.html">stickUp</a></li>     	
+    <li><a href="jquery5.html">固定顶部</a></li>     	
   </ul>
 </div>
+  <nav id="nav">
+      <span><a href="">Home</a></span>
+      <span><a href="">Work</a></span>
+      <span><a href="">Dream</a></span>
+      <span><a href="">About</a></span>
+  </nav>
+  <div class="fjimg">
+      <img src="image/fj.jpg" alt="">
+  </div>
+  <div class="imgs">
+      <div><img src="image/03.jpg" alt=""></div>
+      <div><img src="image/02.jpg" alt=""></div>
+      <div><img src="image/04.jpg" alt=""></div>
+      <div><img src="image/05.jpg" alt=""></div>    
+  </div>
+  <div class="about">
+      <div class="about1">About</div>
+      <div class="about2">
+      <p>爱好：爱生活爱前端爱加班</p>
+      <p>技能：熟悉HTML、CSS、javascript、jQuery</p>  
+      </div>
+      
+  </div>
+
 </div>
+<script>
+$(function(){
+    var nav = $("#nav");   
+    var maxTop = 160;      
+    $(window).on('scroll',function(){
+        var top = $(window).scrollTop();
+        if (top >= maxTop) {
+            nav.css({
+                'position':'fixed',
+                'top':0,
+                
+                'opacity':0.5
+            });
+        }
+        if (top < maxTop) {
+            nav.css({
+                'position':'relative',
+                
+                'opacity':1
+            });
+        }
+    });
+});
+</script>
 </body>
 </html>

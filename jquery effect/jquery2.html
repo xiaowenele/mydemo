@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>tab切换</title>
+
 	<style>
 		html,body,ul,li,p,h1,h2,h3,h4,h5,h6 {
                 padding:0px;
@@ -60,21 +61,122 @@
     #header li:hover {
     	background-color: rgba(255,255,255,0.5);
     }
+    .tab-contain{
+    margin: 50px auto;
+    width: 1000px;
+    padding:100px;
+    background: #7F7D7D;
+}
+#tabs {
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#tabs li  {
+    margin: 0;
+    background: #ddd;
+    padding: 10px 50px;
+    position: relative;
+    float: left;
+    text-decoration: none;
+   /* color: #444;*/
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .4);
+}
+#tabs li a {
+    color: #444;
+}
+.current {
+    outline: 0;
+    background-color: white !important;
+    z-index: 4;
+    
+}
+
+.hoverItem {
+    background: #AAC8B9 !important;
+}
+#content {
+    background: #fff;
+    padding: 50px;
+    height: 220px;
+    position: relative;
+    border-radius: 0 5px 5px 5px;
+    box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
+}
+.item{
+    display: none;
+}
+
+.show{
+    display: block;
+}
 	</style>
 </head>
 <body>
 <div class="container">
 <div id="header">
-  <h3>jqurey的常见特效--图片懒加载</h3>
-  <p>先加载可视窗口区域的图片，当用户向下拖动滚动条时再继续加载后面的图片</p>
+  <h3>jqurey的常见特效--tab切换</h3>
+  <p>点击tab栏显示对应的内容，并且tab栏样式变化</p>
   <ul>
     <li><a href="jquery.html">懒加载</a></li>
     <li><a href="jquery2.html">tab切换</a></li>     	
     <li><a href="jquery3.html">瀑布流布局</a></li>     	
     <li><a href="jquery4.html">回到顶部</a></li>     	
-    <li><a href="jquery5.html">stickUp</a></li>     	
+    <li><a href="jquery5.html">固定顶部</a></li>     	
   </ul>
 </div>
+<div class="tab-contain">
+    <!-- tab栏 -->
+    <ul id="tabs">
+      <li class="current"><a href="#" title="tab1">One</a></li>
+      <li><a href="#" title="tab2">Two</a></li>
+      <li><a href="#" title="tab3">Three</a></li>
+      <li><a href="#" title="tab4">Four</a></li>
+    </ul>
+    <!-- 对应显示内容 -->
+    <div id="content">
+      <div id="tab1" class="item show">
+        <h2>内容一</h2>
+        <p>Tab栏切换的功能：（1）点击tab栏显示对应的内容，并且tab栏样式变化。实现方式：一般tab栏如果要做成比较好看的样式，会切两张图作为背景，一张用于选中时的背景，一张用于未选中的背景。这里为了实现效果，只用css设置样式。然后为每个tab绑定click事件，当触发click事件时，对应的内容div的display设置block，否则设置为none。</p>
+      </div>
+      <div id="tab2" class="item">
+        <h2>内容二</h2>
+        <p>（2）当鼠标悬停在没有选中的tab栏上时，改变样式，移开时又恢复回来的样式。如果tab栏已选中，则鼠标是否悬停不影响样式。实现方式：为tab栏添加hover事件，当鼠标进入时，判断该tab栏是不是被选中（可以为了选中的tab栏设置一个class，只需要判断是否含有该class即可），在不选中的情况下再添加hover的样式。</p>
+      </div>
+      <div id="tab3" class="item">
+        <h2>内容三</h2>
+      </div>
+      <div id="tab4" class="item">
+       <h2>内容四</h2>
+      </div>
+    </div>
+  </div>
 </div>
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+     $(function(){
+     $('#tabs a').click(function(e) {
+          e.preventDefault();  //preventDefault() 方法阻止元素发生默认的行为              
+          $('#tabs li').removeClass("current").removeClass("hoverItem");
+          $(this).parent().addClass("current");
+          $("#content div").removeClass("show");
+          $('#' + $(this).attr('title')).addClass('show');
+      });
+
+     $('#tabs a').hover(function(){
+        if(!$(this).parent().hasClass("current")){
+            
+          $(this).parent().addClass("hoverItem");
+        }
+     },function(){
+        $(this).parent().removeClass("hoverItem");
+     });
+  });
+</script>
 </body>
 </html>
